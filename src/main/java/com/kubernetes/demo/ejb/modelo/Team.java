@@ -11,7 +11,7 @@ public class Team {
 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String titulo;
+	private String team;
 	
 	@ManyToOne
 	private Player player;
@@ -19,8 +19,8 @@ public class Team {
 	public Team() {
 	}
 
-	public Team(String titulo, Player player) {
-		this.titulo = titulo;
+	public Team(String team, Player player) {
+		this.team = team;
 		this.player = player;
 	}
 
@@ -32,12 +32,12 @@ public class Team {
 		this.id = id;
 	}
 
-	public String getTitulo() {
-		return titulo;
+	public String getteam() {
+		return team;
 	}
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setteam(String team) {
+		this.team = team;
 	}
 
 	public Player getPlayer() {
