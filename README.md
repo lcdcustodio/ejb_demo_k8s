@@ -3,6 +3,10 @@ EJB Demo Kubernetes
 
 "# ejb_demo_kubernetes 2" 
 
+
+![Alt text](/picture/hld.jpg "Optional title")
+
+
 mvn clean package
 
 docker build -t ejb_demo_k8s .
@@ -29,6 +33,7 @@ Checkout
 
 - kubectl get services
 - kubectl get deployments
+- kubectl get rs
 - kubectl get pods -o wide 
 - kubectl describe service svc-ejb-demo-k8s #endpoint address to load balance
 
