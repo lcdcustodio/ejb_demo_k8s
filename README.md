@@ -4,7 +4,7 @@ EJB Demo Kubernetes
 "# ejb_demo_kubernetes 2" 
 
 
-![Alt text](/picture/hld.jpg "Optional title")
+![Alt text](/picture/hld.png "Optional title")
 
 
 mvn clean package
