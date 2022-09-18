@@ -1,31 +1,60 @@
-EJB Demo Kubernetes
+EJB Demo over Kubernetes
 ===========
 
-"# ejb_demo_kubernetes 2" 
+
+Deploying Enterprise JavaBeans application over Kubernetes cluster. For achieving the aim is mandatory to follow containerization approach. For this purposes was considered WildFly Docker image. It is required also a Kubernetes Cluster up and running.  
 
 
-![Alt text](/picture/hld.png "Optional title")
+------------
+
+1- High Level Design
+===========================
 
 
-mvn clean package
+![Alt text](/picture/hld.png "Solution Architecture")
 
-docker build -t ejb_demo_k8s .
 
-#docker run -p 8080:8080 ejb_demo_k8s
+------------
 
-Assembly EJB WebService on kubernetes
+2- Installation
+===========================
 
-- kubectl apply -f .\deploy\deployment.yaml 
-- kubectl apply -f .\deploy\service.yaml
+First of all, let’s clone the repository and build the application:
+
+```
+    git clone https://github.com/lcdcustodio/ejb_demo_k8s.git
+    cd ejb_demo_k8s
+    mvn clean install
+```    
+
+Once the Maven build is finished, the deployment archive has been created in target folder. Now, we be able to create images required for Pods in the Solution Architecture.  
+
+```
+    # EJB image
+    docker build -t ejb_demo_k8s .
+    # NGINX image
+    docker build -f deploy/Dockerfile -t nginx_soap_script .    
+
+```    
+
+
+------------
+
+3- Kubernetes resources assembly 
+===========================
+
+Yaml files in charge to create all of kubernetes resources for this demo are available at deploy folder. Through the Kubernetes command-line tool, kubectl, let's run the following instructions:  
+
+```
+    # create deployment, pod and replicaset for EJB application
+    kubectl apply -f .\deploy\deployment.yaml
+    # create service for EJB application
+    kubectl apply -f .\deploy\service.yaml
+    # create NGINX pod
+    kubectl apply -f .\deploy\pod-nginx.yaml
+```    
+
 =================
-
-Assembly nginx Pod for calling EJB WebService through SOAP scripts
-
-
-
-docker build -f deploy/Dockerfile -t nginx_soap_script .
-
-- kubectl apply -f .\deploy\pod-nginx.yaml
 
 
 =================
