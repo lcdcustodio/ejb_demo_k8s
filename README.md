@@ -54,32 +54,33 @@ Yaml files in charge to create all of kubernetes resources for this demo are ava
     kubectl apply -f .\deploy\pod-nginx.yaml
 ```    
 
-=================
+------------
+
+4- Kubernetes Logs 
+===========================
 
 
-=================
-Checkout
-
-- kubectl get services
-- kubectl get deployments
-- kubectl get rs
-- kubectl get pods -o wide 
+- kubectl get services # get service info
+- kubectl get deployments # get deployment info
+- kubectl get rs # get replicaset info
+- kubectl get pods -o wide  # get pod info
 - kubectl describe service svc-ejb-demo-k8s #endpoint address to load balance
+- kubectl logs -f pod-nginx #soap script is up and running
 
-# soap script is up and running
-- kubectl logs -f pod-nginx
+------------
 
+5- Check load balancing between pods
+===========================
 
-# check load balancing
 - kubectl logs -f <pod_name> #pods created from deployment 
 
-kubectl logs -f deploy-ejb-demo-k8s-69d747ffb6-vd8xj
+------------
 
-kubectl logs -f deploy-ejb-demo-k8s-69d747ffb6-vp25d
+6- Use Case - check pod resiliency 
+===========================
 
-====================
-# check resiliency
-- kubectl get pods -o wide 
+#
+- kubectl get pods -o wide  # get pods info
 - kubectl delete pods --all  #pods will be back, except pod-nginx
-- kubectl delete pods <pod_name> # downtime is really fast.. s
-- kubectl get pods -o wide 
+- kubectl delete pods <pod_name> # pod downtime is really fast.. s
+- kubectl get pods -o wide  # get pods info
